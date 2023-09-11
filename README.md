@@ -19,14 +19,28 @@ The settings.txt file should generate with 7 lines of settings:
 The program first creates a "contrast map", this contrast map decides what pixels should be sorted and what pixels should be left alone based on the settings configuration. The program then clones the images and sorts "spans" from the contrast map and then saves the new image.
 ### In-depth explanation
 #### Creating the contrast map
-The contrast map decides whether a pixel will or will not be sorted. This is decided through the following logic: `IF pixel.red IS GREATER THAN lower_bound AND pixel.red IS LESS THAN upper_bound THEN true ELSE false` or `IF pixel.green IS GREATER THAN lower_bound AND pixel.green IS LESS THAN upper_bound THEN true ELSE false` etc etc.
+The contrast map decides whether a pixel will or will not be sorted. This is decided through the following logic: 
+```
+IF pixel.red IS GREATER THAN lower_bound AND pixel.red IS LESS THAN upper_bound THEN true ELSE false
+``` 
+or 
+```
+IF pixel.green IS GREATER THAN lower_bound AND pixel.green IS LESS THAN upper_bound THEN true ELSE false
+```
+etc etc.
 #### Sorting the pixels
 To sort the pixels, the program uses the contrast map to find what spans of pixels should be sorted. A span is defined as a length of pixels where the corresponding contrast map value is true. Given an example of a 4x4 image, where the number is the value being sorted and TRUE/FALSE denotes the contrast map value:<br />
 ```
-{(1,TRUE), (3,TRUE), (2,TRUE), (0,FALSE)}  {(2,FALSE), (3,TRUE), (1,TRUE), (0, FALSE)}  {(3,TRUE), (2,FALSE), (0,FALSE), (1,TRUE)}  {(0,FALSE), (2,FALSE), (1,TRUE), (3,FALSE)}
+{(1,TRUE), (3,TRUE), (2,TRUE), (0,FALSE)}  
+{(2,FALSE), (3,TRUE), (1,TRUE), (0, FALSE)}  
+{(3,TRUE), (2,FALSE), (0,FALSE), (1,TRUE)}  
+{(0,FALSE), (2,FALSE), (1,TRUE), (3,FALSE)}
 ```
 This would turn into when the sorting direction is set to right:
 ```
-{(1,TRUE), (2,TRUE), (3,TRUE), (0,FALSE)}<br />{(2,FALSE), (1,TRUE), (3,TRUE), (0, FALSE)}<br />{(3,TRUE), (2,FALSE), (0,FALSE), (1,TRUE)}<br />{(0,FALSE), (2,FALSE), (1,TRUE), (3,FALSE)}
+{(1,TRUE), (2,TRUE), (3,TRUE), (0,FALSE)}  
+{(2,FALSE), (1,TRUE), (3,TRUE), (0, FALSE)}  
+{(3,TRUE), (2,FALSE), (0,FALSE), (1,TRUE)}  
+{(0,FALSE), (2,FALSE), (1,TRUE), (3,FALSE)}
 ```
 And then the new sorted values then overwrite the old unsorted values.
