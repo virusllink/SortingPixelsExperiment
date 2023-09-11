@@ -20,33 +20,29 @@ fn main() {
     if lines.len() != 7 {
         println!("The settings file is not formatted correctly or has the wrong amount of lines. Please make sure the number of lines inside the file is equal to 7 (No empty lines at the end of the file). Please delete it and run the program again to create a new one.");
         return;
-    } else{
-        if lines[6] == "true" {
-            println!("{:?}, {:?}", lines, !Path::new(&lines[0]).exists() || !Path::new(&lines[0]).is_dir());
-        }
-
-        if !Path::new(&lines[0]).exists() || !Path::new(&lines[0]).is_dir() {
-            println!("The input path is not a directory or does not exist. Please delete it and run the program again to create a new one.");
-            return;
-        } else if lines[1] != "left" && lines[1] != "right" && lines[1] != "down" && lines[1] != "up" {
-            println!("The sort direction is not valid. Please make sure the value is supported and spelt correctly. Please delete it and run the program again to create a new one.");
-            return;
-        } else if lines[2] != "red" && lines[2] != "green" && lines[2] != "blue" && lines[2] != "hue" && lines[2] != "saturation" && lines[2] != "value" {
-            println!("The sort by value is not valid. Please make sure the value is supported and spelt correctly. Please delete it and run the program again to create a new one.");
-            return;
-        } else if lines[3].parse::<f32>().is_err() || lines[3].parse::<f32>().unwrap() < 0.0 || lines[3].parse::<f32>().unwrap() > 1.0 {
-            println!("The contrast map lower bound is not valid. Please make sure the value is a number between 0.0 and 1.0. Please delete it and run the program again to create a new one.");
-            return;
-        } else if lines[4].parse::<f32>().is_err() || lines[4].parse::<f32>().unwrap() < 0.0 || lines[4].parse::<f32>().unwrap() > 1.0 {
-            println!("The contrast map upper bound is not valid. Please make sure the value is a number between 0.0 and 1.0. Please delete it and run the program again to create a new one.");
-            return;
-        } else if lines[5] != "red" && lines[5] != "green" && lines[5] != "blue" && lines[5] != "hue" && lines[5] != "saturation" && lines[5] != "value" {
-            println!("The contrast type is not valid. Please make sure the value is supported and spelt correctly. Please delete it and run the program again to create a new one.");
-            return;
-        } else if lines[6] != "true" && lines[6] != "false" {
-            println!("The debug value is not valid. Please make sure the value is either true or false. Please delete it and run the program again to create a new one.");
-            return;
-        }
+    } else if lines[6] == "true" {
+        println!("{:?}, {:?}", lines, !Path::new(&lines[0]).exists() || !Path::new(&lines[0]).is_dir());
+    } else if !Path::new(&lines[0]).exists() || !Path::new(&lines[0]).is_dir() {
+        println!("The input path is not a directory or does not exist. Please delete it and run the program again to create a new one.");
+        return;
+    } else if lines[1] != "left" && lines[1] != "right" && lines[1] != "down" && lines[1] != "up" {
+        println!("The sort direction is not valid. Please make sure the value is supported and spelt correctly. Please delete it and run the program again to create a new one.");
+        return;
+    } else if lines[2] != "red" && lines[2] != "green" && lines[2] != "blue" && lines[2] != "hue" && lines[2] != "saturation" && lines[2] != "value" {
+        println!("The sort by value is not valid. Please make sure the value is supported and spelt correctly. Please delete it and run the program again to create a new one.");
+        return;
+    } else if lines[3].parse::<f32>().is_err() || lines[3].parse::<f32>().unwrap() < 0.0 || lines[3].parse::<f32>().unwrap() > 1.0 {
+        println!("The contrast map lower bound is not valid. Please make sure the value is a number between 0.0 and 1.0. Please delete it and run the program again to create a new one.");
+        return;
+    } else if lines[4].parse::<f32>().is_err() || lines[4].parse::<f32>().unwrap() < 0.0 || lines[4].parse::<f32>().unwrap() > 1.0 {
+        println!("The contrast map upper bound is not valid. Please make sure the value is a number between 0.0 and 1.0. Please delete it and run the program again to create a new one.");
+        return;
+    } else if lines[5] != "red" && lines[5] != "green" && lines[5] != "blue" && lines[5] != "hue" && lines[5] != "saturation" && lines[5] != "value" {
+        println!("The contrast type is not valid. Please make sure the value is supported and spelt correctly. Please delete it and run the program again to create a new one.");
+        return;
+    } else if lines[6] != "true" && lines[6] != "false" {
+        println!("The debug value is not valid. Please make sure the value is either true or false. Please delete it and run the program again to create a new one.");
+        return;
     }
 
     // Initialise the program settings and start the program
@@ -531,7 +527,6 @@ fn start_sort(program_settings: &ProgramSettings, input_image_path: &String, out
                                         j += 1;
                                     }
                                     row[i..j].sort_unstable_by(|a, b| rgb_to_hsv(a).0.partial_cmp(&rgb_to_hsv(b).0).unwrap());
-                                    //row[i..j].sort_unstable_by_key(|pixel| Reverse((rgb_to_hsv(pixel).0-180.0).partial_cmp(&180.0).unwrap_or(std::cmp::Ordering::Equal)).0);
                                     i = j;
                                 } else {
                                     i += 1;
