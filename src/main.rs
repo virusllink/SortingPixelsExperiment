@@ -552,7 +552,7 @@ fn start_sort(program_settings: &ProgramSettings, input_image_path: &String, out
                                     while j < row.len() && contrast_map[y*width+j] {
                                         j += 1;
                                     }
-                                    row[i..j].sort_unstable_by_key(|pixel| (rgb_to_hsv(pixel).0-180.0).partial_cmp(&180.0).unwrap_or(std::cmp::Ordering::Equal));
+                                    row[i..j].sort_unstable_by(|a, b| rgb_to_hsv(a).0.partial_cmp(&rgb_to_hsv(b).0).unwrap());
                                     i = j;
                                 } else {
                                     i += 1;
@@ -581,7 +581,7 @@ fn start_sort(program_settings: &ProgramSettings, input_image_path: &String, out
                                     while j < column.len() && contrast_map[j*width+x] {
                                         j += 1;
                                     }
-                                    column[i..j].sort_unstable_by_key(|pixel| Reverse((rgb_to_hsv(pixel).0-180.0).partial_cmp(&180.0).unwrap_or(std::cmp::Ordering::Equal)).0);
+                                    column[i..j].sort_unstable_by(|a, b| rgb_to_hsv(a).0.partial_cmp(&rgb_to_hsv(b).0).unwrap());
                                     i = j;
                                 } else {
                                     i += 1;
@@ -612,7 +612,7 @@ fn start_sort(program_settings: &ProgramSettings, input_image_path: &String, out
                                     while j < column.len() && contrast_map[j*width+x] {
                                         j += 1;
                                     }
-                                    column[i..j].sort_unstable_by_key(|pixel| (rgb_to_hsv(pixel).0-180.0).partial_cmp(&180.0).unwrap_or(std::cmp::Ordering::Equal));
+                                    column[i..j].sort_unstable_by(|a, b| rgb_to_hsv(a).0.partial_cmp(&rgb_to_hsv(b).0).unwrap());
                                     i = j;
                                 } else {
                                     i += 1;
@@ -644,7 +644,7 @@ fn start_sort(program_settings: &ProgramSettings, input_image_path: &String, out
                                     while j < row.len() && contrast_map[y*width+j] {
                                         j += 1;
                                     }
-                                    row[i..j].sort_unstable_by_key(|pixel| Reverse((rgb_to_hsv(pixel).1-50.0).partial_cmp(&50.0).unwrap_or(std::cmp::Ordering::Equal)).0);
+                                    row[i..j].sort_unstable_by(|a, b| rgb_to_hsv(a).1.partial_cmp(&rgb_to_hsv(b).1).unwrap());
                                     i = j;
                                 } else {
                                     i += 1;
@@ -670,7 +670,7 @@ fn start_sort(program_settings: &ProgramSettings, input_image_path: &String, out
                                     while j < row.len() && contrast_map[y*width+j] {
                                         j += 1;
                                     }
-                                    row[i..j].sort_unstable_by_key(|pixel| (rgb_to_hsv(pixel).1-50.0).partial_cmp(&50.0).unwrap_or(std::cmp::Ordering::Equal));
+                                    row[i..j].sort_unstable_by(|a, b| rgb_to_hsv(a).1.partial_cmp(&rgb_to_hsv(b).1).unwrap());
                                     i = j;
                                 } else {
                                     i += 1;
@@ -699,7 +699,7 @@ fn start_sort(program_settings: &ProgramSettings, input_image_path: &String, out
                                     while j < column.len() && contrast_map[j*width+x] {
                                         j += 1;
                                     }
-                                    column[i..j].sort_unstable_by_key(|pixel| Reverse((rgb_to_hsv(pixel).1-50.0).partial_cmp(&50.0).unwrap_or(std::cmp::Ordering::Equal)));
+                                    column[i..j].sort_unstable_by(|a, b| rgb_to_hsv(a).1.partial_cmp(&rgb_to_hsv(b).1).unwrap());
                                     i = j;
                                 } else {
                                     i += 1;
@@ -730,7 +730,7 @@ fn start_sort(program_settings: &ProgramSettings, input_image_path: &String, out
                                     while j < column.len() && contrast_map[j*width+x] {
                                         j += 1;
                                     }
-                                    column[i..j].sort_unstable_by_key(|pixel| (rgb_to_hsv(pixel).1-50.0).partial_cmp(&50.0).unwrap_or(std::cmp::Ordering::Equal));
+                                    column[i..j].sort_unstable_by(|a, b| rgb_to_hsv(a).1.partial_cmp(&rgb_to_hsv(b).1).unwrap());
                                     i = j;
                                 } else {
                                     i += 1;
@@ -762,7 +762,7 @@ fn start_sort(program_settings: &ProgramSettings, input_image_path: &String, out
                                     while j < row.len() && contrast_map[y*width+j] {
                                         j += 1;
                                     }
-                                    row[i..j].sort_unstable_by_key(|pixel| Reverse((rgb_to_hsv(pixel).2-50.0).partial_cmp(&50.0).unwrap_or(std::cmp::Ordering::Equal)));
+                                    row[i..j].sort_unstable_by(|a, b| rgb_to_hsv(a).2.partial_cmp(&rgb_to_hsv(b).2).unwrap());
                                     i = j;
                                 } else {
                                     i += 1;
@@ -788,7 +788,7 @@ fn start_sort(program_settings: &ProgramSettings, input_image_path: &String, out
                                     while j < row.len() && contrast_map[y*width+j] {
                                         j += 1;
                                     }
-                                    row[i..j].sort_unstable_by_key(|pixel| (rgb_to_hsv(pixel).2-50.0).partial_cmp(&50.0).unwrap_or(std::cmp::Ordering::Equal));
+                                    row[i..j].sort_unstable_by(|a, b| rgb_to_hsv(a).2.partial_cmp(&rgb_to_hsv(b).2).unwrap());
                                     i = j;
                                 } else {
                                     i += 1;
@@ -817,7 +817,7 @@ fn start_sort(program_settings: &ProgramSettings, input_image_path: &String, out
                                     while j < column.len() && contrast_map[j*width+x] {
                                         j += 1;
                                     }
-                                    column[i..j].sort_unstable_by_key(|pixel| Reverse((rgb_to_hsv(pixel).2-50.0).partial_cmp(&50.0).unwrap_or(std::cmp::Ordering::Equal)));
+                                    column[i..j].sort_unstable_by(|a, b| rgb_to_hsv(a).2.partial_cmp(&rgb_to_hsv(b).2).unwrap());
                                     i = j;
                                 } else {
                                     i += 1;
@@ -848,7 +848,7 @@ fn start_sort(program_settings: &ProgramSettings, input_image_path: &String, out
                                     while j < column.len() && contrast_map[j*width+x] {
                                         j += 1;
                                     }
-                                    column[i..j].sort_unstable_by_key(|pixel| (rgb_to_hsv(pixel).2-50.0).partial_cmp(&50.0).unwrap_or(std::cmp::Ordering::Equal));
+                                    column[i..j].sort_unstable_by(|a, b| rgb_to_hsv(a).2.partial_cmp(&rgb_to_hsv(b).2).unwrap());
                                     i = j;
                                 } else {
                                     i += 1;
