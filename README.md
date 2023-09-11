@@ -38,9 +38,9 @@ To sort the pixels, the program uses the contrast map to find what spans of pixe
 ```
 This would turn into when the sorting direction is set to right:
 ```
-{(1,TRUE), (2,TRUE), (3,TRUE), (0,FALSE)}  
-{(2,FALSE), (1,TRUE), (3,TRUE), (0, FALSE)}  
-{(3,TRUE), (2,FALSE), (0,FALSE), (1,TRUE)}  
-{(0,FALSE), (2,FALSE), (1,TRUE), (3,FALSE)}
+{(1,TRUE) , (2,TRUE) , (3,TRUE) , (0,FALSE) }  
+{(2,FALSE), (1,TRUE) , (3,TRUE) , (0, FALSE)}  
+{(3,TRUE) , (2,FALSE), (0,FALSE), (1,TRUE)  }  
+{(0,FALSE), (2,FALSE), (1,TRUE) , (3,FALSE) }
 ```
 And then the new sorted values then overwrite the old unsorted values.
