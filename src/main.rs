@@ -64,8 +64,8 @@ fn main() {
             "value" => SortBy::Value,
             _ => SortBy::Red,
         },
-        contrast_map_lower: 0.5,
-        contrast_map_upper: 1.0,
+        contrast_map_lower: lines[3].parse::<f32>().unwrap(),
+        contrast_map_upper: lines[4].parse::<f32>().unwrap(),
         contrast_type: match lines[5].as_str() {
             "red" => ContrastType::Red,
             "green" => ContrastType::Green,
